@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: family.farhood.org
+spec:
+  rules:
+  - host: family.farhood.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name:  wordpress
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - family.farhood.org
+    secretName: farhood-org-cert-letsencrypt-prod
